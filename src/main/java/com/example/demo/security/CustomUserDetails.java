@@ -18,8 +18,8 @@ public class CustomUserDetails implements UserDetails {
     private final User user;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<SimpleGrantedAuthority> authorites= user.getRole().stream().map(role->new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toSet());
-        user.getRole().stream().flatMap(role->role.getPrivilege().stream()).map(privilege -> new SimpleGrantedAuthority(privilege.getPrivilege())).forEach(privilege->authorites.add(privilege));
+        Set<SimpleGrantedAuthority> authorites= user.getRoles().stream().map(role->new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toSet());
+        user.getRoles().stream().flatMap(role->role.getPrivileges().stream()).map(privilege -> new SimpleGrantedAuthority(privilege.getPrivilege())).forEach(privilege->authorites.add(privilege));
         return authorites;
     }
 

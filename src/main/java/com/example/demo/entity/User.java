@@ -2,9 +2,9 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Set;
 
-import java.util.Collection;
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -22,9 +22,17 @@ public class User {
     private String password;
     @ManyToMany
     @JoinTable(name = "role_info", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> role;
+    private Set<Role> roles;
+    @Column(nullable = false)
+    @Builder.Default
     private Boolean enabled=true;
+    @Column(nullable = false)
+    @Builder.Default
     private Boolean accountNonLocked=true;
+    @Column(nullable = false)
+    @Builder.Default
     private Boolean accountNonExpired=true;
+    @Column(nullable = false)
+    @Builder.Default
     private Boolean credentialsNonExpired=true;
 }

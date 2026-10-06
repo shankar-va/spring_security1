@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Collection;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,5 +18,5 @@ public class Role {
     private String role;
     @ManyToMany
     @JoinTable(name = "user_role_mapping", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "priviledge_id"))
-    private Collection<Privilege> privilege;
+    private Set<Privilege> privileges;
 }
